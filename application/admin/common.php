@@ -224,3 +224,30 @@ EOT;
         return $icon;
     }
 }
+
+if (!function_exists('formatSchemaVal'))
+{
+    /**
+     * 格式化列表数据
+     * 
+     * @param string $val
+     * @param array $colItem
+     * @return string
+     */
+    function formatSchemaVal($val, $colItem)
+    {
+        switch (gettype($colItem['type']))
+        {
+            case 'array':
+                $val = $colItem['type'][$val];
+            break;
+            default:
+                if($colItem['type'] == 'time' && $val){
+                    $val = date('Y-m-d H:i:s', $val);
+                }
+                
+        }
+        
+        return $val;
+    }
+}

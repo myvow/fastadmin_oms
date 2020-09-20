@@ -199,6 +199,7 @@ class Addon extends Backend
         if (!is_dir($addonTmpDir)) {
             @mkdir($addonTmpDir, 0755, true);
         }
+        
         $info = $file->rule('uniqid')->validate(['size' => 10240000, 'ext' => 'zip'])->move($addonTmpDir);
         if ($info) {
             $tmpName = substr($info->getFilename(), 0, stripos($info->getFilename(), '.'));
